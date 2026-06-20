@@ -43,6 +43,76 @@
 
   .serif { font-family: 'Playfair Display', serif; }
 
+  /* ─── MOTION SYSTEM ─── */
+  .scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--green-vivid), var(--gold-light));
+    transform: scaleX(0);
+    transform-origin: left center;
+    z-index: 1100;
+    pointer-events: none;
+    will-change: transform;
+  }
+
+  .js-motion .reveal {
+    opacity: 0;
+    filter: blur(4px);
+    transform: translate3d(0, 34px, 0);
+    transition:
+      opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+      filter 0.75s ease;
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, transform;
+  }
+  .js-motion .reveal-left { transform: translate3d(-42px, 0, 0); }
+  .js-motion .reveal-right { transform: translate3d(42px, 0, 0); }
+  .js-motion .reveal-scale { transform: scale(0.94); }
+  .js-motion .reveal.is-visible {
+    opacity: 1;
+    filter: blur(0);
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  .js-motion .pain-item.reveal.is-visible:hover,
+  .js-motion .chapter-card.reveal.is-visible:hover,
+  .js-motion .testimonial.reveal.is-visible:hover {
+    transform: translateY(-6px);
+  }
+  .js-motion .offer-card.reveal.is-visible:hover {
+    transform: translateY(-4px) scale(1);
+  }
+
+  .js-motion .hero .hero-badge,
+  .js-motion .hero h1,
+  .js-motion .hero-sub,
+  .js-motion .hero-cta,
+  .js-motion .hero-cta-sub,
+  .js-motion .hero-seals {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .js-motion .hero.hero-ready .hero-badge,
+  .js-motion .hero.hero-ready h1,
+  .js-motion .hero.hero-ready .hero-sub,
+  .js-motion .hero.hero-ready .hero-cta,
+  .js-motion .hero.hero-ready .hero-cta-sub,
+  .js-motion .hero.hero-ready .hero-seals {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .js-motion .hero h1 { transition-delay: 80ms; }
+  .js-motion .hero-sub { transition-delay: 160ms; }
+  .js-motion .hero-cta { transition-delay: 240ms; }
+  .js-motion .hero-cta-sub { transition-delay: 300ms; }
+  .js-motion .hero-seals { transition-delay: 360ms; }
+
   /* ─── TOPBAR ─── */
   .topbar {
     background: var(--red-alert);
@@ -213,6 +283,12 @@
     display: flex;
     gap: 14px;
     align-items: flex-start;
+    transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+  }
+  .pain-item:hover {
+    transform: translateY(-5px);
+    background: rgba(255,255,255,0.075);
+    border-color: rgba(34,197,94,0.28);
   }
   .pain-icon {
     width: 36px;
@@ -271,6 +347,8 @@
     box-shadow: 20px 20px 60px rgba(0,0,0,0.25), -4px -4px 20px rgba(255,255,255,0.15);
     position: relative;
     overflow: hidden;
+    transform-style: preserve-3d;
+    animation: book-float 5s ease-in-out infinite;
   }
   .book-cover::after {
     content: '';
@@ -365,12 +443,14 @@
     border: 1px solid rgba(255,255,255,0.07);
     border-radius: 12px;
     padding: 24px;
-    transition: border-color 0.2s, background 0.2s;
+    transition: border-color 0.25s, background 0.25s, transform 0.25s, box-shadow 0.25s;
     cursor: default;
   }
   .chapter-card:hover {
     background: rgba(34,197,94,0.06);
     border-color: rgba(34,197,94,0.25);
+    transform: translateY(-6px);
+    box-shadow: 0 16px 34px rgba(0,0,0,0.18);
   }
   .chapter-num {
     font-size: 11px;
@@ -408,6 +488,12 @@
     border-radius: 14px;
     padding: 28px;
     position: relative;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+  .testimonial:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 40px rgba(13,43,26,0.1);
+    border-color: rgba(34,197,94,0.22);
   }
   .testimonial::before {
     content: '"';
@@ -466,6 +552,11 @@
     text-align: center;
     position: relative;
     overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .offer-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 24px 70px rgba(0,0,0,0.2);
   }
   .offer-card::before {
     content: '';
@@ -730,6 +821,35 @@
     font-size: 12px;
     color: rgba(255,255,255,0.5);
   }
+
+  @keyframes book-float {
+    0%, 100% { transform: translateY(0) rotate(-0.5deg); }
+    50% { transform: translateY(-10px) rotate(0.5deg); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      scroll-behavior: auto !important;
+      transition-duration: 0.01ms !important;
+      transition-delay: 0ms !important;
+    }
+    .js-motion .reveal,
+    .js-motion .hero .hero-badge,
+    .js-motion .hero h1,
+    .js-motion .hero-sub,
+    .js-motion .hero-cta,
+    .js-motion .hero-cta-sub,
+    .js-motion .hero-seals {
+      opacity: 1;
+      filter: none;
+      transform: none;
+    }
+    .scroll-progress { display: none; }
+  }
+
   @media (max-width: 480px) {
     body.sticky-visible { padding-bottom: 68px; }
     .hero { padding: 64px 20px 80px; }
@@ -756,6 +876,7 @@
 </style>
 </head>
 <body>
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
 <!-- TOPBAR -->
 <div class="topbar">
@@ -1161,6 +1282,97 @@
 </div>
 
 <script>
+  const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const motionEnabled = !motionQuery.matches;
+
+  if (motionEnabled) {
+    document.documentElement.classList.add('js-motion');
+
+    const revealSelectors = [
+      '.pain-section .section-label',
+      '.pain-section .section-title',
+      '.pain-item',
+      '.book-cover-wrap',
+      '.book-content .section-label',
+      '.book-content .section-title',
+      '.book-content .section-desc',
+      '.book-promise-list li',
+      '.chapters-section .section-label',
+      '.chapters-section .section-title',
+      '.chapter-card',
+      '.testimonials-section .section-label',
+      '.testimonials-section .section-title',
+      '.testimonial',
+      '.offer-heading',
+      '.offer-card',
+      '.guarantee-box',
+      '.faq-section .section-label',
+      '.faq-section .section-title',
+      '.faq-item',
+      '.final-cta-section .container'
+    ];
+
+    const revealElements = document.querySelectorAll(revealSelectors.join(','));
+    const staggerGroups = document.querySelectorAll(
+      '.pain-list, .book-promise-list, .chapters-grid, .testimonials-grid, .faq-list'
+    );
+
+    revealElements.forEach(element => element.classList.add('reveal'));
+    document.querySelector('.book-cover-wrap')?.classList.add('reveal-left');
+    document.querySelector('.offer-card')?.classList.add('reveal-scale');
+    document.querySelector('.guarantee-box')?.classList.add('reveal-scale');
+
+    staggerGroups.forEach(group => {
+      const items = group.querySelectorAll(':scope > .reveal');
+      items.forEach((item, index) => {
+        item.style.setProperty('--reveal-delay', `${Math.min(index * 70, 350)}ms`);
+      });
+    });
+
+    if ('IntersectionObserver' in window) {
+      const revealObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.12,
+        rootMargin: '0px 0px -7% 0px'
+      });
+
+      revealElements.forEach(element => revealObserver.observe(element));
+    } else {
+      revealElements.forEach(element => element.classList.add('is-visible'));
+    }
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        document.querySelector('.hero')?.classList.add('hero-ready');
+      });
+    });
+  }
+
+  const scrollProgress = document.getElementById('scrollProgress');
+  let scrollTicking = false;
+
+  const updateScrollProgress = () => {
+    const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = scrollableHeight > 0 ? window.scrollY / scrollableHeight : 0;
+    scrollProgress.style.transform = `scaleX(${Math.min(Math.max(progress, 0), 1)})`;
+    scrollTicking = false;
+  };
+
+  window.addEventListener('scroll', () => {
+    if (!scrollTicking) {
+      requestAnimationFrame(updateScrollProgress);
+      scrollTicking = true;
+    }
+  }, { passive: true });
+
+  updateScrollProgress();
+
   const faqItems = document.querySelectorAll('.faq-item');
 
   faqItems.forEach(item => {
