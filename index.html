@@ -1416,6 +1416,16 @@ alt=""></noscript>
     });
   });
 
+  const checkoutLinks = document.querySelectorAll('a[href*="kiwify.com.br"]');
+
+  checkoutLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      if (typeof fbq !== 'undefined') {
+        fbq('track', 'InitiateCheckout');
+      }
+    });
+  });
+
   const hero = document.querySelector('.hero');
   const sticky = document.getElementById('stickyCta');
 
