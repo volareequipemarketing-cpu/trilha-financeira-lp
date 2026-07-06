@@ -645,19 +645,15 @@ fbq('track', 'PageView');
     gap: 10px;
   }
   .avatar {
-    width: 40px;
-    height: 40px;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    font-size: 14px;
+    display: block;
+    object-fit: cover;
+    border: 2px solid #fff;
+    box-shadow: 0 8px 18px rgba(13,43,26,0.12);
     flex-shrink: 0;
   }
-  .avatar-green { background: #dcfce7; color: #166534; }
-  .avatar-yellow { background: #fef9c3; color: #713f12; }
-  .avatar-pink { background: #fce7f3; color: #9d174d; }
   .testimonial-name { font-weight: 600; font-size: 14px; }
   .testimonial-role { font-size: 12px; color: var(--text-muted); }
   .stars { color: var(--gold); font-size: 13px; margin-bottom: 4px; }
@@ -1260,7 +1256,7 @@ alt=""></noscript>
           Eu sabia que estava devendo, mas não fazia ideia do tamanho. Fiz a tabela do primeiro capítulo e quase caí da cadeira. A clareza que isso me deu foi o começo de tudo. Hoje, 4 meses depois, quitei 3 dívidas.
         </p>
         <div class="testimonial-author">
-          <div class="avatar avatar-green">AM</div>
+          <img class="avatar" src="foto-ana-medeiros.png" alt="Foto de Ana Medeiros" width="48" height="48" loading="lazy" decoding="async">
           <div>
             <div class="testimonial-name">Ana Medeiros</div>
             <div class="testimonial-role">Auxiliar administrativa, SP</div>
@@ -1273,7 +1269,7 @@ alt=""></noscript>
           O roteiro de negociação foi o que mais me ajudou. Eu travava quando o banco ligava. Segui o script exatamente como está no livro e consegui parcelar uma dívida de R$2.800 em 10x sem juros.
         </p>
         <div class="testimonial-author">
-          <div class="avatar avatar-yellow">RS</div>
+          <img class="avatar" src="foto-rodrigo-santos.png" alt="Foto de Rodrigo Santos" width="48" height="48" loading="lazy" decoding="async">
           <div>
             <div class="testimonial-name">Rodrigo Santos</div>
             <div class="testimonial-role">Motorista de aplicativo, RJ</div>
@@ -1286,10 +1282,36 @@ alt=""></noscript>
           Mostrei para meu marido e a gente fez o orçamento juntos pela primeira vez em 8 anos de casamento. Descobrimos que gastávamos R$600 por mês em delivery sem perceber. Isso mudou nossa relação com o dinheiro.
         </p>
         <div class="testimonial-author">
-          <div class="avatar avatar-pink">FC</div>
+          <img class="avatar" src="foto-fernanda-costa.png" alt="Foto de Fernanda Costa" width="48" height="48" loading="lazy" decoding="async">
           <div>
             <div class="testimonial-name">Fernanda Costa</div>
             <div class="testimonial-role">Professora, MG</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">
+          Eu sempre começava o mês tentando controlar tudo, mas perdia o rumo na segunda semana. O método me deu uma ordem clara: primeiro enxergar, depois negociar e só então ajustar os hábitos. Pela primeira vez consegui fechar o mês sabendo para onde foi cada real.
+        </p>
+        <div class="testimonial-author">
+          <img class="avatar" src="foto-mariana-lopes.png" alt="Foto de Mariana Lopes" width="48" height="48" loading="lazy" decoding="async">
+          <div>
+            <div class="testimonial-name">Mariana Lopes</div>
+            <div class="testimonial-role">Recepcionista, PR</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">
+          Eu achava que precisava ganhar muito mais para sair das dívidas. Depois de aplicar a trilha, cortei gastos que nem percebia e renegociei duas contas atrasadas. O mais importante foi parar de improvisar e ter um plano simples para seguir.
+        </p>
+        <div class="testimonial-author">
+          <img class="avatar" src="foto-carlos-henrique.png" alt="Foto de Carlos Henrique" width="48" height="48" loading="lazy" decoding="async">
+          <div>
+            <div class="testimonial-name">Carlos Henrique</div>
+            <div class="testimonial-role">Técnico de manutenção, BA</div>
           </div>
         </div>
       </div>
