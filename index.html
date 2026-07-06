@@ -456,6 +456,52 @@ fbq('track', 'PageView');
     margin-top: 2px;
   }
 
+  .product-mockup-section {
+    background:
+      radial-gradient(circle at 50% 20%, rgba(34,197,94,0.18), transparent 34%),
+      linear-gradient(180deg, var(--cream-dark) 0%, var(--cream) 58%, var(--dark) 100%);
+    padding: 32px 24px 76px;
+    overflow: hidden;
+  }
+  .product-mockup-frame {
+    position: relative;
+    max-width: 560px;
+    margin: 0 auto;
+    text-align: center;
+    isolation: isolate;
+  }
+  .product-mockup-frame::before {
+    content: '';
+    position: absolute;
+    inset: 14% 4% 8%;
+    background: radial-gradient(circle, rgba(34,197,94,0.28), rgba(13,43,26,0.08) 48%, transparent 72%);
+    filter: blur(24px);
+    z-index: -2;
+  }
+  .product-mockup-frame::after {
+    content: '';
+    position: absolute;
+    left: 12%;
+    right: 12%;
+    bottom: 2%;
+    height: 11%;
+    background: radial-gradient(ellipse, rgba(0,0,0,0.28), transparent 68%);
+    filter: blur(10px);
+    z-index: -1;
+  }
+  .product-mockup-image {
+    display: block;
+    width: min(100%, 520px);
+    height: auto;
+    margin: 0 auto;
+    filter:
+      drop-shadow(0 22px 28px rgba(0,0,0,0.22))
+      drop-shadow(0 0 26px rgba(34,197,94,0.16));
+    transform-origin: center;
+    animation: mockup-float 6s ease-in-out infinite;
+    will-change: transform, filter;
+  }
+
   /* ─── CHAPTERS ─── */
   .chapters-section {
     background: var(--dark);
@@ -856,6 +902,21 @@ fbq('track', 'PageView');
     50% { transform: translateY(-10px) rotate(0.5deg); }
   }
 
+  @keyframes mockup-float {
+    0%, 100% {
+      transform: translateY(0) rotate(-1.2deg) scale(1);
+      filter:
+        drop-shadow(0 22px 28px rgba(0,0,0,0.22))
+        drop-shadow(0 0 26px rgba(34,197,94,0.16));
+    }
+    50% {
+      transform: translateY(-12px) rotate(0.8deg) scale(1.015);
+      filter:
+        drop-shadow(0 30px 34px rgba(0,0,0,0.24))
+        drop-shadow(0 0 34px rgba(34,197,94,0.24));
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     *, *::before, *::after {
@@ -901,6 +962,8 @@ fbq('track', 'PageView');
       padding: 10px 14px;
       font-size: 14px;
     }
+    .product-mockup-section { padding: 24px 16px 56px; }
+    .product-mockup-image { width: min(100%, 380px); }
   }
 </style>
 </head>
@@ -1063,13 +1126,19 @@ alt=""></noscript>
   </div>
 </section>
 
-<div style="text-align: center; margin: 48px auto; max-width: 420px; padding: 0 24px;">
-  <img
-    src="mockup-produto.png"
-    alt="Trilha de Educação Financeira — guia completo com 8 módulos práticos"
-    style="width: 100%; max-width: 420px; height: auto; display: block; margin: 0 auto;"
-  >
-</div>
+<section class="product-mockup-section" aria-label="Mockup do guia Trilha de Educação Financeira">
+  <div class="product-mockup-frame reveal-scale">
+    <img
+      src="mockup-produto.png"
+      alt="Trilha de Educação Financeira — guia completo com 8 módulos práticos"
+      class="product-mockup-image"
+      width="1040"
+      height="1300"
+      loading="lazy"
+      decoding="async"
+    >
+  </div>
+</section>
 
 <!-- CHAPTERS -->
 <section class="chapters-section">
@@ -1339,6 +1408,7 @@ alt=""></noscript>
       '.book-content .section-title',
       '.book-content .section-desc',
       '.book-promise-list li',
+      '.product-mockup-frame',
       '.chapters-section .section-label',
       '.chapters-section .section-title',
       '.chapter-card',
