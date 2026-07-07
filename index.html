@@ -1001,6 +1001,16 @@ fbq('track', 'PageView');
     .hero-layout { gap: 32px; }
     .hero-visual .product-mockup-image { width: min(100%, 340px); }
   }
+
+  @media (max-width: 600px) {
+    #autora > div {
+      flex-direction: column !important;
+      text-align: center;
+    }
+    #autora img {
+      margin: 0 auto;
+    }
+  }
 </style>
 </head>
 <body>
@@ -1402,6 +1412,27 @@ alt=""></noscript>
           Se por qualquer motivo você não ficar satisfeito nos primeiros 7 dias, devolvemos 100% do valor. Sem perguntas, sem burocracia. Você não tem absolutamente nada a perder.
         </p>
       </div>
+    </div>
+  </div>
+</section>
+
+<section id="autora" style="background: #f9f9f9; padding: 48px 24px;">
+  <div style="max-width: 720px; margin: 0 auto; display: flex; align-items: center; gap: 32px; flex-wrap: wrap;">
+    <img
+      src="isis-souza.jpg"
+      alt="Isis Souza — Educadora Financeira"
+      style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 3px solid #2d6a4f;"
+    >
+    <div>
+      <p style="font-size: 13px; text-transform: uppercase; letter-spacing: 1px; color: #2d6a4f; margin: 0 0 4px 0; font-weight: 600;">
+        Quem criou essa trilha
+      </p>
+      <h3 style="margin: 0 0 12px 0; font-size: 20px;">
+        Isis Souza · Educadora Financeira
+      </h3>
+      <p style="margin: 0; font-size: 16px; line-height: 1.7; color: #333;">
+        "Já estive do outro lado, sabendo que devia, mas sem coragem de somar tudo e colocar no papel. Foi quando parei de evitar os números e comecei a enfrentá-los com método que a situação começou a mudar. Criei a Trilha para ser o guia que eu precisava ter tido naquele momento."
+      </p>
     </div>
   </div>
 </section>
