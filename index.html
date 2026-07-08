@@ -150,10 +150,10 @@ fbq('track', 'PageView');
     box-shadow: 0 8px 24px rgba(10,14,11,0.18);
   }
   .topbar span { font-weight: 700; }
-  .topbar .price-old {
-    text-decoration: line-through;
-    text-decoration-thickness: 2px;
-    opacity: 0.82;
+  .topbar .promo-label {
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
   }
   .promo-timer {
     display: inline-flex;
@@ -701,6 +701,41 @@ fbq('track', 'PageView');
     height: 3px;
     background: linear-gradient(90deg, var(--green-vivid), var(--gold));
   }
+  .product-options-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    align-items: stretch;
+  }
+  .product-options-grid .offer-card {
+    max-width: none;
+    width: 100%;
+    height: 100%;
+  }
+  .offer-card.featured {
+    border-color: rgba(34,197,94,0.35);
+    box-shadow: 0 24px 70px rgba(34,197,94,0.12);
+  }
+  .offer-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: rgba(34,197,94,0.14);
+    border: 1px solid rgba(34,197,94,0.28);
+    color: var(--green-vivid);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .offer-format {
+    font-size: 13px;
+    color: rgba(255,255,255,0.52);
+    margin-top: -14px;
+  }
   .offer-heading {
     text-align: center;
     margin-bottom: 48px;
@@ -708,6 +743,11 @@ fbq('track', 'PageView');
   .offer-heading .section-label {
     display: flex;
     justify-content: center;
+  }
+  .offer-heading .section-desc {
+    margin: 0 auto;
+    color: rgba(255,255,255,0.62);
+    text-align: center;
   }
   .offer-product-title {
     font-family: 'Playfair Display', serif;
@@ -927,11 +967,11 @@ fbq('track', 'PageView');
     right: 0;
     background: var(--dark);
     border-top: 1px solid rgba(255,255,255,0.08);
-    padding: 14px 24px;
+    padding: 16px 24px;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 24px;
+    gap: 16px;
     z-index: 999;
     transform: translateY(100%);
     transition: transform 0.3s;
@@ -946,12 +986,18 @@ fbq('track', 'PageView');
   .sticky-btn {
     background: linear-gradient(135deg, #22c55e, #16a34a);
     color: #fff;
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 700;
-    padding: 12px 32px;
+    padding: 14px 42px;
     border-radius: 8px;
     text-decoration: none;
     white-space: nowrap;
+    box-shadow: 0 8px 30px rgba(34,197,94,0.34);
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .sticky-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 38px rgba(34,197,94,0.44);
   }
   .sticky-label {
     font-size: 12px;
@@ -1013,19 +1059,26 @@ fbq('track', 'PageView');
       font-size: 17px;
     }
     .offer-price { font-size: 58px; }
+    .product-options-grid { grid-template-columns: 1fr; }
     .sticky-cta {
-      justify-content: space-between;
+      justify-content: center;
       gap: 12px;
       padding: 10px 16px;
     }
     .sticky-label { display: none; }
     .sticky-price { font-size: 18px; }
     .sticky-btn {
-      padding: 10px 14px;
+      width: 100%;
+      text-align: center;
+      padding: 12px 14px;
       font-size: 14px;
     }
     .hero-layout { gap: 32px; }
     .hero-visual .product-mockup-image { width: min(100%, 340px); }
+  }
+
+  @media (max-width: 860px) {
+    .product-options-grid { grid-template-columns: 1fr; }
   }
 
   @media (max-width: 600px) {
@@ -1047,7 +1100,7 @@ alt=""></noscript>
 
 <!-- TOPBAR -->
 <div class="topbar">
-  🔥 <span>De <span class="price-old">R$197,90</span> por R$49,90.</span> Promoção acaba em <span class="promo-timer" id="promoTimer">01:42:21</span>
+  🔥 <span class="promo-label">Promoção acaba em</span> <span class="promo-timer" id="promoTimer">01:42:21</span>
 </div>
 
 <!-- HERO -->
@@ -1062,10 +1115,10 @@ alt=""></noscript>
       <p class="hero-sub">
         Um guia passo a passo — direto, sem enrolação — para você entender suas dívidas, parar de criar novas, organizar o orçamento e construir uma vida financeira de verdade.
       </p>
-      <a href="https://pay.kiwify.com.br/oJ6NVny" class="hero-cta">
+      <a href="#oferta" class="hero-cta">
         Quero sair das dívidas agora →
       </a>
-      <span class="hero-cta-sub">Acesso completo por apenas R$49,90 · 🔒 Pagamento 100% seguro via Kiwify</span>
+      <span class="hero-cta-sub">Conheça as opções disponíveis · 🔒 Pagamento 100% seguro via Kiwify</span>
 
       <div class="hero-seals">
         <div class="seal">
@@ -1150,7 +1203,7 @@ alt=""></noscript>
       </div>
     </div>
     <p class="cta-sub">Se você se identificou com algum desses pontos, essa trilha foi feita para você.</p>
-    <a href="https://pay.kiwify.com.br/oJ6NVny" class="cta-btn">Quero a solução por R$49,90 →</a>
+    <a href="#oferta" class="cta-btn">Quero conhecer as opções →</a>
   </div>
 </section>
 
@@ -1356,72 +1409,6 @@ alt=""></noscript>
   </div>
 </section>
 
-<!-- OFFER -->
-<section class="offer-section" id="oferta">
-  <div class="container">
-    <div class="offer-heading">
-      <div class="section-label">Sua oferta</div>
-      <h2 class="section-title light">Tudo que você precisa para começar hoje</h2>
-    </div>
-
-    <div class="offer-card">
-      <div class="offer-product-title">
-        Trilha de Educação Financeira
-      </div>
-
-      <div class="offer-includes">
-        <div class="offer-item">
-          <span class="check">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-          </span>
-          Guia passo a passo — 8 módulos práticos com tabelas e roteiros prontos
-        </div>
-        <div class="offer-item">
-          <span class="check">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-          </span>
-          Tabelas práticas prontas para preencher
-        </div>
-        <div class="offer-item">
-          <span class="check">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-          </span>
-          Roteiro completo de negociação de dívidas
-        </div>
-        <div class="offer-item">
-          <span class="check">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-          </span>
-          Modelo de orçamento mensal editável
-        </div>
-        <div class="offer-item">
-          <span class="check">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-          </span>
-          Acesso imediato após a compra
-        </div>
-      </div>
-
-      <div class="offer-price-block">
-        <div class="offer-de">De R$ 197,90</div>
-        <div class="offer-por">Por apenas</div>
-        <div class="offer-price">
-          <sup>R$</sup>49<sub>,90</sub>
-        </div>
-        <div class="offer-parce">ou em até 2x sem juros no cartão</div>
-      </div>
-
-      <a href="https://pay.kiwify.com.br/oJ6NVny" class="cta-btn">
-        Quero meu acesso agora →
-      </a>
-      <div class="cta-sub">
-        🔒 Pagamento seguro · Kiwify · Acesso imediato<br>
-        Pix · Cartão de crédito · Boleto bancário
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- GUARANTEE -->
 <section class="guarantee-section">
   <div class="container">
@@ -1493,20 +1480,123 @@ alt=""></noscript>
   </div>
 </section>
 
-<!-- FINAL CTA -->
-<section class="final-cta-section">
-  <div class="container">
-    <h2 class="final-cta-title">
-      A decisão mais importante<br>é começar agora.
-    </h2>
-    <p class="final-cta-copy">
-      Cada dia sem um plano, os juros trabalham contra você. Por R$49,90, você tem um mapa completo para virar o jogo.
-    </p>
-    <a href="https://pay.kiwify.com.br/oJ6NVny" class="cta-btn final-cta-button">
-      Quero meu acesso agora →
-    </a>
-    <div class="final-cta-note">
-      🔒 Garantia de 7 dias · Pagamento seguro via Kiwify
+<!-- PRODUCT OPTIONS -->
+<section class="offer-section" id="oferta">
+  <div class="container-wide">
+    <div class="offer-heading">
+      <div class="section-label">Escolha sua versão</div>
+      <h2 class="section-title light">Duas formas de seguir a Trilha</h2>
+      <p class="section-desc">
+        A versão impressa existe para quem prefere estudar no papel. A versão digital entrega o mesmo método, com acesso imediato.
+      </p>
+    </div>
+
+    <div class="product-options-grid">
+      <div class="offer-card">
+        <div class="offer-product-title">
+          Trilha de Educação Financeira — Versão Impressa
+        </div>
+        <div class="offer-format">Guia físico para estudar no papel</div>
+
+        <div class="offer-includes">
+          <div class="offer-item">
+            <span class="check">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </span>
+            Guia impresso com os 8 módulos práticos
+          </div>
+          <div class="offer-item">
+            <span class="check">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </span>
+            Tabelas e roteiros para acompanhar a trilha
+          </div>
+          <div class="offer-item">
+            <span class="check">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </span>
+            Ideal para quem prefere material físico
+          </div>
+          <div class="offer-item">
+            <span class="check">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </span>
+            Compra segura pela Kiwify
+          </div>
+        </div>
+
+        <div class="offer-price-block">
+          <div class="offer-por">Versão impressa</div>
+          <div class="offer-price">
+            <sup>R$</sup>149<sub>,90</sub>
+          </div>
+        </div>
+
+        <a href="https://pay.kiwify.com.br/DzPGsCy" class="cta-btn">
+          Quero a versão impressa →
+        </a>
+        <div class="cta-sub">
+          🔒 Pagamento seguro · Kiwify
+        </div>
+      </div>
+
+      <div class="offer-card featured">
+        <div class="offer-badge">Mais escolhida</div>
+        <div class="offer-product-title">
+          Trilha de Educação Financeira — Versão Digital
+        </div>
+        <div class="offer-format">Mesmo método, acesso imediato</div>
+
+        <div class="offer-includes">
+          <div class="offer-item">
+            <span class="check">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </span>
+            Guia passo a passo — 8 módulos práticos com tabelas e roteiros prontos
+          </div>
+          <div class="offer-item">
+            <span class="check">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </span>
+            Tabelas práticas prontas para preencher
+          </div>
+          <div class="offer-item">
+            <span class="check">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </span>
+            Roteiro completo de negociação de dívidas
+          </div>
+          <div class="offer-item">
+            <span class="check">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </span>
+            Modelo de orçamento mensal editável
+          </div>
+          <div class="offer-item">
+            <span class="check">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </span>
+            Acesso imediato após a compra
+          </div>
+        </div>
+
+        <div class="offer-price-block">
+          <div class="offer-de">De R$ 197,90</div>
+          <div class="offer-por">Por apenas</div>
+          <div class="offer-price">
+            <sup>R$</sup>49<sub>,90</sub>
+          </div>
+          <div class="offer-parce">ou em até 2x sem juros no cartão</div>
+        </div>
+
+        <a href="https://pay.kiwify.com.br/oJ6NVny" class="cta-btn">
+          Quero a versão digital →
+        </a>
+        <div class="cta-sub">
+          🔒 Pagamento seguro · Kiwify · Acesso imediato<br>
+          Pix · Cartão de crédito · Boleto bancário
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1521,11 +1611,7 @@ alt=""></noscript>
 
 <!-- STICKY CTA -->
 <div class="sticky-cta" id="stickyCta">
-  <div>
-    <div class="sticky-label">Trilha de Educação Financeira</div>
-    <div class="sticky-price">R$ 49,90</div>
-  </div>
-  <a href="https://pay.kiwify.com.br/oJ6NVny" class="sticky-btn">Garantir meu acesso →</a>
+  <a href="#oferta" class="sticky-btn">Ver as opções da oferta →</a>
 </div>
 
 <script>
@@ -1597,18 +1683,17 @@ alt=""></noscript>
       '.guarantee-box',
       '.faq-section .section-label',
       '.faq-section .section-title',
-      '.faq-item',
-      '.final-cta-section .container'
+      '.faq-item'
     ];
 
     const revealElements = document.querySelectorAll(revealSelectors.join(','));
     const staggerGroups = document.querySelectorAll(
-      '.pain-list, .book-promise-list, .chapters-grid, .testimonials-grid, .faq-list'
+      '.pain-list, .book-promise-list, .chapters-grid, .testimonials-grid, .faq-list, .product-options-grid'
     );
 
     revealElements.forEach(element => element.classList.add('reveal'));
     document.querySelector('.book-cover-wrap')?.classList.add('reveal-left');
-    document.querySelector('.offer-card')?.classList.add('reveal-scale');
+    document.querySelectorAll('.offer-card').forEach(card => card.classList.add('reveal-scale'));
     document.querySelector('.guarantee-box')?.classList.add('reveal-scale');
 
     staggerGroups.forEach(group => {
