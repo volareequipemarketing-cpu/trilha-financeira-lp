@@ -150,6 +150,11 @@ fbq('track', 'PageView');
     box-shadow: 0 8px 24px rgba(10,14,11,0.18);
   }
   .topbar span { font-weight: 700; }
+  .topbar .price-old {
+    text-decoration: line-through;
+    text-decoration-thickness: 2px;
+    opacity: 0.82;
+  }
   .promo-timer {
     display: inline-flex;
     align-items: center;
@@ -1042,7 +1047,7 @@ alt=""></noscript>
 
 <!-- TOPBAR -->
 <div class="topbar">
-  🔥 <span>De R$197,90 por R$49,90.</span> Promoção acaba em <span class="promo-timer" id="promoTimer">01:42:21</span>
+  🔥 <span>De <span class="price-old">R$197,90</span> por R$49,90.</span> Promoção acaba em <span class="promo-timer" id="promoTimer">01:42:21</span>
 </div>
 
 <!-- HERO -->
