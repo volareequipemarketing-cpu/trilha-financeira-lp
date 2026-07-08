@@ -139,8 +139,29 @@ fbq('track', 'PageView');
     font-size: 14px;
     font-weight: 500;
     letter-spacing: 0.02em;
+    position: sticky;
+    top: 0;
+    z-index: 1002;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    box-shadow: 0 8px 24px rgba(10,14,11,0.18);
   }
   .topbar span { font-weight: 700; }
+  .promo-timer {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 82px;
+    padding: 3px 9px;
+    border-radius: 999px;
+    background: rgba(10,14,11,0.24);
+    border: 1px solid rgba(255,255,255,0.22);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.06em;
+  }
 
   /* ─── HERO ─── */
   .hero {
@@ -1021,7 +1042,7 @@ alt=""></noscript>
 
 <!-- TOPBAR -->
 <div class="topbar">
-  🔥 <span>Preço de lançamento: R$19,90.</span> Quando o período de lançamento encerrar, o valor volta para R$67,00.
+  🔥 <span>De R$197,90 por R$49,90.</span> Promoção acaba em <span class="promo-timer" id="promoTimer">01:42:21</span>
 </div>
 
 <!-- HERO -->
@@ -1039,7 +1060,7 @@ alt=""></noscript>
       <a href="https://pay.kiwify.com.br/oJ6NVny" class="hero-cta">
         Quero sair das dívidas agora →
       </a>
-      <span class="hero-cta-sub">Acesso completo por apenas R$19,90 · 🔒 Pagamento 100% seguro via Kiwify</span>
+      <span class="hero-cta-sub">Acesso completo por apenas R$49,90 · 🔒 Pagamento 100% seguro via Kiwify</span>
 
       <div class="hero-seals">
         <div class="seal">
@@ -1124,7 +1145,7 @@ alt=""></noscript>
       </div>
     </div>
     <p class="cta-sub">Se você se identificou com algum desses pontos, essa trilha foi feita para você.</p>
-    <a href="https://pay.kiwify.com.br/oJ6NVny" class="cta-btn">Quero a solução por R$19,90 →</a>
+    <a href="https://pay.kiwify.com.br/oJ6NVny" class="cta-btn">Quero a solução por R$49,90 →</a>
   </div>
 </section>
 
@@ -1377,10 +1398,10 @@ alt=""></noscript>
       </div>
 
       <div class="offer-price-block">
-        <div class="offer-de">De R$ 67,00</div>
+        <div class="offer-de">De R$ 197,90</div>
         <div class="offer-por">Por apenas</div>
         <div class="offer-price">
-          <sup>R$</sup>19<sub>,90</sub>
+          <sup>R$</sup>49<sub>,90</sub>
         </div>
         <div class="offer-parce">ou em até 2x sem juros no cartão</div>
       </div>
@@ -1474,7 +1495,7 @@ alt=""></noscript>
       A decisão mais importante<br>é começar agora.
     </h2>
     <p class="final-cta-copy">
-      Cada dia sem um plano, os juros trabalham contra você. Por R$19,90, você tem um mapa completo para virar o jogo.
+      Cada dia sem um plano, os juros trabalham contra você. Por R$49,90, você tem um mapa completo para virar o jogo.
     </p>
     <a href="https://pay.kiwify.com.br/oJ6NVny" class="cta-btn final-cta-button">
       Quero meu acesso agora →
@@ -1497,12 +1518,54 @@ alt=""></noscript>
 <div class="sticky-cta" id="stickyCta">
   <div>
     <div class="sticky-label">Trilha de Educação Financeira</div>
-    <div class="sticky-price">R$ 19,90</div>
+    <div class="sticky-price">R$ 49,90</div>
   </div>
   <a href="https://pay.kiwify.com.br/oJ6NVny" class="sticky-btn">Garantir meu acesso →</a>
 </div>
 
 <script>
+  const promoTimer = document.getElementById('promoTimer');
+  const promoCountdownStorageKey = 'trilhaFinanceiraPromoEndsAt';
+  const promoCountdownInitialSeconds = (1 * 60 * 60) + (42 * 60) + 21;
+
+  const getPromoCountdownEnd = () => {
+    const now = Date.now();
+
+    try {
+      const savedEnd = Number(localStorage.getItem(promoCountdownStorageKey));
+
+      if (savedEnd && savedEnd > now) {
+        return savedEnd;
+      }
+
+      const newEnd = now + promoCountdownInitialSeconds * 1000;
+      localStorage.setItem(promoCountdownStorageKey, String(newEnd));
+      return newEnd;
+    } catch {
+      return now + promoCountdownInitialSeconds * 1000;
+    }
+  };
+
+  if (promoTimer) {
+    const promoCountdownEnd = getPromoCountdownEnd();
+
+    const renderPromoCountdown = () => {
+      const remainingSeconds = Math.max(0, Math.floor((promoCountdownEnd - Date.now()) / 1000));
+      const hours = String(Math.floor(remainingSeconds / 3600)).padStart(2, '0');
+      const minutes = String(Math.floor((remainingSeconds % 3600) / 60)).padStart(2, '0');
+      const seconds = String(remainingSeconds % 60).padStart(2, '0');
+
+      promoTimer.textContent = `${hours}:${minutes}:${seconds}`;
+
+      if (remainingSeconds <= 0) {
+        clearInterval(promoCountdownInterval);
+      }
+    };
+
+    const promoCountdownInterval = setInterval(renderPromoCountdown, 1000);
+    renderPromoCountdown();
+  }
+
   const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
   const motionEnabled = !motionQuery.matches;
 
