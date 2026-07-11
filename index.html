@@ -707,6 +707,10 @@ fbq('track', 'PageView');
     gap: 24px;
     align-items: stretch;
   }
+  .product-options-grid.single-option {
+    grid-template-columns: minmax(0, 680px);
+    justify-content: center;
+  }
   .product-options-grid .offer-card {
     max-width: none;
     width: 100%;
@@ -804,6 +808,19 @@ fbq('track', 'PageView');
     color: rgba(255,255,255,0.5);
     margin-top: 8px;
   }
+  .installment-note {
+    max-width: 420px;
+    margin: 16px auto 0;
+    padding: 14px 16px;
+    border-radius: 12px;
+    background: rgba(34,197,94,0.08);
+    border: 1px solid rgba(34,197,94,0.18);
+    color: rgba(255,255,255,0.68);
+    font-size: 14px;
+    line-height: 1.55;
+  }
+  .installment-note strong { color: #fff; font-weight: 700; }
+  .installment-note span { color: var(--green-vivid); font-weight: 800; }
 
   .cta-btn {
     display: inline-block;
@@ -1071,6 +1088,10 @@ fbq('track', 'PageView');
       margin-top: 12px;
       font-size: 12px;
     }
+    .installment-note {
+      padding: 12px 14px;
+      font-size: 12px;
+    }
     .sticky-cta {
       justify-content: center;
       gap: 12px;
@@ -1129,7 +1150,7 @@ alt=""></noscript>
       <a href="#oferta" class="hero-cta">
         Quero sair das dívidas agora →
       </a>
-      <span class="hero-cta-sub">Conheça as opções disponíveis · 🔒 Pagamento 100% seguro via Kiwify</span>
+      <span class="hero-cta-sub">Conheça a oferta digital · 🔒 Pagamento 100% seguro via Kiwify</span>
 
       <div class="hero-seals">
         <div class="seal">
@@ -1214,7 +1235,7 @@ alt=""></noscript>
       </div>
     </div>
     <p class="cta-sub">Se você se identificou com algum desses pontos, essa trilha foi feita para você.</p>
-    <a href="#oferta" class="cta-btn">Quero conhecer as opções →</a>
+    <a href="#oferta" class="cta-btn">Quero conhecer a oferta →</a>
   </div>
 </section>
 
@@ -1335,68 +1356,20 @@ alt=""></noscript>
 <section class="offer-section" id="oferta">
   <div class="container-wide">
     <div class="offer-heading">
-      <div class="section-label">Escolha sua versão</div>
-      <h2 class="section-title light">Duas formas de seguir a Trilha</h2>
+      <div class="section-label">Oferta digital</div>
+      <h2 class="section-title light">Acesso imediato ao Guia completo</h2>
       <p class="section-desc">
-        A versão impressa existe para quem prefere estudar no papel. A versão digital entrega o mesmo método, com acesso imediato.
+        A versão digital entrega o método completo para você aplicar hoje, com tabelas, roteiros e passo a passo prático.
       </p>
     </div>
 
-    <div class="product-options-grid">
-      <div class="offer-card">
-        <div class="offer-product-title">
-          Trilha de Educação Financeira — Versão Impressa
-        </div>
-        <div class="offer-format">Guia físico para estudar no papel</div>
-
-        <div class="offer-includes">
-          <div class="offer-item">
-            <span class="check">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-            </span>
-            Guia impresso com os 8 módulos práticos
-          </div>
-          <div class="offer-item">
-            <span class="check">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-            </span>
-            Tabelas e roteiros para acompanhar a trilha
-          </div>
-          <div class="offer-item">
-            <span class="check">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-            </span>
-            Ideal para quem prefere material físico
-          </div>
-          <div class="offer-item">
-            <span class="check">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-            </span>
-            Compra segura pela Kiwify
-          </div>
-        </div>
-
-        <div class="offer-price-block">
-          <div class="offer-por">Versão impressa</div>
-          <div class="offer-price">
-            <sup>R$</sup>149<sub>,90</sub>
-          </div>
-        </div>
-
-        <a href="https://pay.kiwify.com.br/DzPGsCy" class="cta-btn">
-          Quero a versão impressa →
-        </a>
-        <div class="cta-sub">
-          🔒 Pagamento seguro · Kiwify
-        </div>
-      </div>
-
+    <div class="product-options-grid single-option">
       <div class="offer-card featured">
         <div class="offer-badge">Mais escolhida</div>
         <div class="offer-product-title">
-          Trilha de Educação Financeira — Versão Digital
+          Trilha de Educação Financeira
         </div>
-        <div class="offer-format">Mesmo método, acesso imediato</div>
+        <div class="offer-format">Guia digital com acesso imediato</div>
 
         <div class="offer-includes">
           <div class="offer-item">
@@ -1437,7 +1410,10 @@ alt=""></noscript>
           <div class="offer-price">
             <sup>R$</sup>49<sub>,90</sub>
           </div>
-          <div class="offer-parce">ou em até 2x sem juros no cartão</div>
+          <div class="offer-parce">ou em até 5x de R$9,98 no cartão</div>
+          <div class="installment-note">
+            Pensando em 5 meses aplicando o Guia, o investimento fica equivalente a <strong>5 parcelas de <span>R$9,98</span></strong> para colocar sua vida financeira em ordem com método.
+          </div>
         </div>
 
         <a href="https://pay.kiwify.com.br/oJ6NVny" class="cta-btn">
@@ -1622,7 +1598,7 @@ alt=""></noscript>
 
 <!-- STICKY CTA -->
 <div class="sticky-cta" id="stickyCta">
-  <a href="#oferta" class="sticky-btn">Ver as opções da oferta →</a>
+  <a href="#oferta" class="sticky-btn">Ver oferta digital →</a>
 </div>
 
 <script>
